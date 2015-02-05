@@ -1,0 +1,67 @@
+#include <iostream>
+#include <assert.h>
+#include <stdlib.h>
+#define SHOW(p)  cout << #p << "=" << p  << endl;
+#define SHOW1(p, q)  cout << #p << "=" << p <<", " << #q << "=" << q << endl;
+
+#include <fstream> // Файловый ввод и вывод с помощью потоков
+#include <map>
+#include <string>
+#include <iterator>
+#include <stdio.h>
+
+using namespace std;
+
+map <string, string> dict;
+map <string, string>::iterator it;
+
+// Чтение словаря из файла
+void readDictionary() {
+  //string dictFileName("dict.txt");
+  ifstream dictFile("dict.txt");
+
+
+
+
+if (!dictFile.good()) {
+    cout << "File \"" << "dict.txt" << "\" - not exists!" << endl;
+  }
+  while(!dictFile.eof()){
+    string from, to;
+    dictFile >> from >> to;
+  // SHOW1(from, to)
+     //   dict.insert(pair<string, string> (from, to));
+    dict[from] = to;
+  }
+
+  dictFile.close();
+}
+
+int main() {
+        setlocale(LC_ALL, "Russian");
+
+  readDictionary();
+
+  ifstream in("dict.txt");
+  ofstream out("out.txt");
+ int wordCount = 0;
+
+ for ( it = dict.begin(); it != dict.end(); ++it)
+  {
+     cout<<(*it).first<<"= "<<(*it).second<<endl;
+       out <<(*it).first<<"= "<<(*it).second<<endl;
+
+  }
+
+ /* while(!in.eof()) {
+    string s;
+    in >> s;
+    cout << (++wordCount) << ". " << s << endl;
+    out << dict[s] ;
+  }*/
+
+  in.close();
+  out.close();
+    system ("pause");
+    return 0;
+}
