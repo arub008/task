@@ -53,12 +53,6 @@ int main() {
 
   }
 
- /* while(!in.eof()) {
-    string s;
-    in >> s;
-    cout << (++wordCount) << ". " << s << endl;
-    out << dict[s] ;
-  }*/
 
   in.close();
   out.close();
